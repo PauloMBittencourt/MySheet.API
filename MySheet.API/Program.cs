@@ -15,8 +15,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<IUsuariosServices, UsuariosServices>();
 builder.Services.AddSingleton<IUsuariosDataAccess, UsuariosDataAccess>();
 builder.Services.AddSingleton<DbAccess>();

@@ -26,6 +26,15 @@ namespace MySheet.Infra.DataAccess.Concrete
 
             return users;
         }
+        public async Task<Usuarios> GetUserById(ObjectId id)
+        {
+            var userCollection = _dataAccess.ConnectToMongo<Usuarios>(_collection);
+            var filter = Builders<Usuarios>.Filter.Eq("_id", id);
+
+            var a = await userCollection.Find(filter).FirstOrDefaultAsync();
+
+            return a;
+        }
 
         public Task Create(Usuarios user)
         {
@@ -61,12 +70,5 @@ namespace MySheet.Infra.DataAccess.Concrete
             }
         }
 
-        public async Task<Usuarios> GetUserById(ObjectId id)
-        {
-            var userCollection = _dataAccess.ConnectToMongo<Usuarios>(_collection);
-            var filter = Builders<Usuarios>.Filter.Eq("_id", id);
-
-            return await userCollection.Find(filter).FirstOrDefaultAsync();
-        }
     }
 }
